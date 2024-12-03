@@ -14,7 +14,8 @@ export const POST: RequestHandler = async (ev) => {
 
 		const cachedGame = gamesMap.get(user_id_token);
 		if (!cachedGame) throw new Error('User id not associated with a game');
-		if (cachedGame.gameOver) return json({ points: cachedGame.points });
+		if (cachedGame.gameOver)
+			return json({ points: cachedGame.points, message: 'You already submitted: ' });
 
 		let points = 0;
 		cachedGame.words.forEach(({ actual }, i) => {

@@ -1,15 +1,16 @@
 import { JWT_SECRET } from '$env/static/private';
 import { json, type RequestHandler } from '@sveltejs/kit';
 import jwt from 'jsonwebtoken';
-import type { IGame, IGameWord } from '../../../types';
+import type { IGame, IUser } from '../../../types';
 import { gamesMap, gameWords } from '../cache';
 
 export const POST: RequestHandler = async (ev) => {
 	try {
-		const { user_id_token } = (await ev.request.json()) as { user_id_token: string };
+		const { user } = (await ev.request.json()) as { user: IUser };
+		const { user_id_token } = user;
 		if (!user_id_token) throw new Error('user id token missing');
 
-		console.log(1);
+		console.log({ user });
 
 		try {
 			jwt.verify(user_id_token, JWT_SECRET);
@@ -19,19 +20,20 @@ export const POST: RequestHandler = async (ev) => {
 		console.log(2);
 
 		const game = gamesMap.get(user_id_token);
-		// if (game) {
-		// 	const clientGame: IGame = {
-		// 		...game,
-		// 		words: game.words.map(({ display }) => ({
-		// 			display,
-		// 			actual: display
-		// 		}))
-		// 	};
-		// 	return json({ clientGame });
-		// }
+		if (game) {
+			const clientGame: IGame = {
+				...game,
+				words: game.words.map(({ display, charNumbers }) => ({
+					display,
+					actual: display,
+					charNumbers
+				}))
+			};
+			return json({ clientGame });
+		}
 		console.log(3);
 
-		const newGame: IGame = { words: [] };
+		const newGame: IGame = { words: [], user };
 
 		const charNums: { [char: string]: number } = {};
 		let added = 0;
@@ -42,7 +44,7 @@ export const POST: RequestHandler = async (ev) => {
 			}
 		}
 		for (let i = 0; newGame.words.length < 20; i++) {
-			if (Math.random() * 2 < 1) {
+			if (Math.random() * 4 < 1) {
 				const newWord = gameWords[i % gameWords.length];
 				for (let j = 0; j < newWord.actual.length; j++) {
 					const letter = newWord.actual[j];

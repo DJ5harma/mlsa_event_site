@@ -3,7 +3,10 @@
 @import 'tailwindcss/utilities';
 
 * {
-	/* border-radius: 10px; */
+	border-radius: 10px;
+	font-weight: 500;
+	font-family: monospace;
+	font-size: large;
 }
 
 section {
@@ -12,15 +15,14 @@ section {
 	justify-content: center;
 	align-items: center;
 	gap: 4px;
-	height: 100%;
 }
 input {
-	border: solid 1px;
+	border: solid 2px;
 	padding: 14px;
 	color: black;
 }
 body {
-	background-color: purple;
+	background-image: linear-gradient(to right, rgb(232, 94, 228), purple);
 	display: flex;
 	justify-content: center;
 	align-items: center;

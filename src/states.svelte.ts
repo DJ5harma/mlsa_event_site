@@ -4,7 +4,8 @@ export const user = $state<IUser>({
 	user_id: '',
 	username: '',
 	user_id_token: '',
-	user_roll_number: ''
+	user_roll_number: '',
+	class: ''
 });
 
-export const game = $state<IGame>({ charNumbers: [], words: [] });
+export const game = $state<IGame>({ words: [], user });
