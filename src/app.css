@@ -1,0 +1,39 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+* {
+	/* border-radius: 10px; */
+}
+
+section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+	height: 100%;
+}
+input {
+	border: solid 1px;
+	padding: 14px;
+	color: black;
+}
+body {
+	background-color: purple;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* height: 100vh; */
+	color: white;
+}
+
+button {
+	background-color: black;
+	color: white;
+	padding: 15px 20px;
+}
+button:hover {
+	background-color: white;
+	color: black;
+}
