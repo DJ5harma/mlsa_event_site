@@ -37,10 +37,9 @@
 
 <section class="gap-4 py-4 font-semibold">
 	<div class="flex flex-col items-center gap-2 [&>p]:text-xl">
-		<p>You have to fill in the blanks</p>
-		<p>For your help, you can observe the numbers below.</p>
-		<p class="bg-black px-4 py-2">
-			Boxes with the same number below will have the same letter as the correct answer
+		<p class="bg-purple-950 p-2">Fill in the blanks</p>
+		<p class="rounded-none bg-black px-4 py-2 text-center">
+			For ease, boxes with the same number below will have the same letter as the correct answer
 		</p>
 	</div>
 	{#each game.words as word, wordIdx}
